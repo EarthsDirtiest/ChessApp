@@ -50,3 +50,7 @@ Choose **Chess lab** from the navigation. Click a piece and a legal destination 
 ## Board annotations
 
 On Chess Lab and Play a friend, right-click and drag from one square to another to draw an orange arrow. Right-click without dragging to highlight a square. Repeat an annotation to remove it, or left-click to clear all. Annotations are local to the browser, never sent to the opponent, and clear when the position changes. Desktop mouse interaction is supported; touch gesture drawing is not yet implemented.
+
+## Chess Lab board editor
+
+Chess Lab includes **Board Setup → Edit board**. In editor mode, turns and legal-move restrictions are disabled. Choose **Move freely** to select a piece then click any destination, **Add / replace** to choose a piece and color and place it anywhere, or **Remove** to erase a square. Use **Clear board**, **Starting setup**, or **Copy setup FEN**. Select the side to move, then click **Use position in legal play** to return to chess.js-validated play. Positions with missing kings or other invalid FEN may be rejected. Editor FEN resets castling and en passant rights; for precise rights, import a complete FEN using the existing import tools. The editor does not implement Stockfish.
