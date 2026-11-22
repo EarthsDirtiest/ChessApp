@@ -46,3 +46,7 @@ Lichess mode requires access to the Lichess API from the browser. Fair play rule
 ## Chess Lab
 
 Choose **Chess lab** from the navigation. Click a piece and a legal destination to play for whichever side is to move. The board uses chess.js legal move and game-over rules, matching the rules engine in live games. Reset starts a new standard game; Undo/Redo navigates the local move line; selecting an earlier position and playing a new move creates a new variation (replaces the old continuation). Flip changes orientation. FEN loads a position, PGN replays a game, and export buttons copy the current FEN or full recorded PGN. No account or network is required once the page has loaded. The current session is not persisted across refreshes. Stockfish is intentionally deferred.
+
+## Board annotations
+
+On Chess Lab and Play a friend, right-click and drag from one square to another to draw an orange arrow. Right-click without dragging to highlight a square. Repeat an annotation to remove it, or left-click to clear all. Annotations are local to the browser, never sent to the opponent, and clear when the position changes. Desktop mouse interaction is supported; touch gesture drawing is not yet implemented.
