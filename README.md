@@ -1,26 +1,35 @@
 # ChessApp
 
-Modern dark chess website with two modes:
-- **Play a friend:** private multiplayer rooms using Firebase Realtime Database and anonymous authentication, no Lichess account.
-- **Lichess online:** OAuth/token login and Lichess Board API.
+A modern dark GitHub Pages chess interface with two independent modes:
 
-## Enable private multiplayer (required)
+- **Play a friend:** WebRTC peer-to-peer multiplayer, using manual offer/answer signaling. No Firebase, database, account, or chess server.
+- **Lichess online:** Lichess OAuth / personal API token and Board API live games.
 
-1. Create a project at https://console.firebase.google.com/.
-2. Under **Build → Authentication → Sign-in method**, enable **Anonymous**.
-3. Under **Build → Realtime Database**, create a database in your preferred region.
-4. Open **Realtime Database → Rules** and replace the rules with the contents of [database.rules.json](database.rules.json). Click **Publish**. Do not use public test-mode rules in production.
-5. Under **Project settings → Your apps**, register a Web app and copy its Firebase configuration values into [src/firebaseConfig.js](src/firebaseConfig.js). The databaseURL must match the Realtime Database URL, including the region if applicable.
-6. Commit those changes. Firebase Web config is public configuration, **not** an admin credential. Never commit Firebase service account keys or private secrets.
-7. Under GitHub repository **Settings → Pages**, select **GitHub Actions** as the build source. The included workflow builds and deploys on pushes to main.
+## Deploy
 
-Website: https://earthsdirtiest.github.io/ChessApp/
+1. Open repository **Settings → Pages** and set the build source to **GitHub Actions**.
+2. The workflow builds and deploys when changes are pushed to main.
+3. Visit https://earthsdirtiest.github.io/ChessApp/ after the deployment succeeds.
 
-## Play a friend
+## Play a friend (manual signaling)
 
-Both users visit the site and select **Play a friend**. The host enters a display name, chooses a color, and clicks **Create private game**. Send the six-character room code or copy the invite link to a friend. The friend enters their name, types the code, and clicks **Join**. Moves synchronize automatically.
+1. Both players open ChessApp → **Play a friend**.
+2. Host chooses White or Black and clicks **Create game / offer**.
+3. Host copies the full offer code and sends it to the guest (for example via chat).
+4. Guest pastes the offer and clicks **Join and generate answer**.
+5. Guest copies the full answer code and sends it to the host.
+6. Host pastes the answer and clicks **Connect to friend**.
+7. Wait until both clients say **connected**. Make moves directly on the board.
 
-Firebase anonymous auth identifies each browser. If you clear site data, change browsers, or use private browsing, you may lose your player identity and access to that room. Room codes are not passwords. Firebase database rules restrict writes to the players and their turn but do not independently verify full chess legality. This is a casual friends feature, **not** a tamper-proof rated platform. Firebase stores the moves and room data.
+The offer/answer codes are long because they contain WebRTC session and network candidate information. Share them privately. A short Game ID requires a signaling service, which this implementation intentionally avoids.
+
+## Limitations
+
+- Both players must keep their tabs open. There is no persistence, matchmaking, reconnection or server-side arbitration.
+- Public STUN servers are used for connection discovery. Restrictive networks may require a TURN relay; this backend-free version has no TURN configuration and cannot guarantee connectivity.
+- The browser uses chess.js for legal move validation and checks incoming move legality. No rated anti-cheat guarantees.
+- WebRTC offer/answer codes can contain IP addresses or network details; do not post them publicly.
+- The current implementation is a first version and has not yet been tested between two browsers.
 
 ## Local development
 
@@ -32,4 +41,4 @@ npm run build
 
 ## Lichess
 
-The Lichess mode uses OAuth PKCE or a personal access token, and requires the browser's network to reach the Lichess API. Fair play: do not enable engine hints during live human games.
+Lichess mode requires access to the Lichess API from the browser. Fair play rules prohibit engine assistance in live games against humans.
