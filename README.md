@@ -1,8 +1,8 @@
 # ChessApp
 
-A modern dark GitHub Pages chess interface with two independent modes:
+A modern dark GitHub Pages chess interface with three independent modes:
 
-- **Play a friend:** WebRTC peer-to-peer multiplayer, using manual offer/answer signaling. No Firebase, database, account, or chess server.
+- **Chess lab:** offline two-sided board for testing chess rules, checkmate, draws, promotions, castling, en passant, undo/redo, FEN and PGN import/export. Stockfish is not implemented.\n- **Play a friend:** WebRTC peer-to-peer multiplayer, using manual offer/answer signaling. No Firebase, database, account, or chess server.
 - **Lichess online:** Lichess OAuth / personal API token and Board API live games.
 
 ## Deploy
@@ -42,3 +42,7 @@ npm run build
 ## Lichess
 
 Lichess mode requires access to the Lichess API from the browser. Fair play rules prohibit engine assistance in live games against humans.
+
+## Chess Lab
+
+Choose **Chess lab** from the navigation. Click a piece and a legal destination to play for whichever side is to move. The board uses chess.js legal move and game-over rules, matching the rules engine in live games. Reset starts a new standard game; Undo/Redo navigates the local move line; selecting an earlier position and playing a new move creates a new variation (replaces the old continuation). Flip changes orientation. FEN loads a position, PGN replays a game, and export buttons copy the current FEN or full recorded PGN. No account or network is required once the page has loaded. The current session is not persisted across refreshes. Stockfish is intentionally deferred.
