@@ -54,3 +54,11 @@ On Chess Lab and Play a friend, right-click and drag from one square to another 
 ## Chess Lab board editor
 
 Chess Lab includes **Board Setup → Edit board**. In editor mode, turns and legal-move restrictions are disabled. Choose **Move freely** to select a piece then click any destination, **Add / replace** to choose a piece and color and place it anywhere, or **Remove** to erase a square. Use **Clear board**, **Starting setup**, or **Copy setup FEN**. Select the side to move, then click **Use position in legal play** to return to chess.js-validated play. Positions with missing kings or other invalid FEN may be rejected. Editor FEN resets castling and en passant rights; for precise rights, import a complete FEN using the existing import tools. The editor does not implement Stockfish.
+
+## Chess Lab: drag and drop + Stockfish
+
+Drag pieces onto destination squares in Chess Lab. In legal-play mode only legal moves are accepted and pawn promotion opens a choice menu; in board-editor **Move freely** mode pieces can be dragged to any square regardless of turn or chess rules. Click-to-move remains available. Desktop browser drag-and-drop is implemented; touch drag is not guaranteed.
+
+Stockfish 19 Lite (single-threaded WebAssembly) runs locally **only in Chess Lab**. The analysis panel shows a live evaluation from White's perspective, search depth and a best-line continuation in SAN. It reanalyzes after moves, undo/redo, reset, FEN/PGN imports, or edits. Enable/disable it or adjust search depth (8–20). The engine is distributed as static JS/WASM assets copied from the npm package during the GitHub Pages build; no analysis API or backend is required. Stockfish is not loaded by the Lichess or friend-game components. Unrestricted editor positions may be invalid for chess-engine analysis.
+
+Stockfish.js is GPL-3.0 licensed; preserve the corresponding license notices and source obligations when redistributing the engine.
