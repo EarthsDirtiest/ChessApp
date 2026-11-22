@@ -1,12 +1,12 @@
-import React,{useRef,useState} from 'react';
+import React,{useEffect,useRef,useState} from 'react';
 import './arrows.css';
 const files='abcdefgh';
 function squareAt(event,element,flipped){const r=element.getBoundingClientRect();const x=(event.clientX-r.left)/r.width,y=(event.clientY-r.top)/r.height;if(x<0||x>=1||y<0||y>=1)return null;const col=Math.floor(x*8),row=Math.floor(y*8);return files[flipped?7-col:col]+(flipped?row+1:8-row)}
 function center(square,flipped){const file=files.indexOf(square[0]),rank=Number(square[1]);return {x:(flipped?7-file:file)*100+50,y:(flipped?rank-1:8-rank)*100+50}}
 export default function ArrowBoard({children,flipped=false,clearKey=0}){
  const [arrows,setArrows]=useState([]),[marks,setMarks]=useState([]),[draft,setDraft]=useState(null);
- const ref=useRef(null),start=useRef(null),key=useRef(clearKey);
- if(key.current!==clearKey){key.current=clearKey;setArrows([]);setMarks([]);setDraft(null)}
+ const ref=useRef(null),start=useRef(null);
+ useEffect(()=>{start.current=null;setArrows([]);setMarks([]);setDraft(null)},[clearKey]);
  function down(e){if(e.button===0){setArrows([]);setMarks([]);return}if(e.button!==2)return;e.preventDefault();const from=squareAt(e,ref.current,flipped);if(!from)return;start.current=from;setDraft({from,to:from});try{ref.current.setPointerCapture(e.pointerId)}catch{}}
  function move(e){if(!start.current)return;const to=squareAt(e,ref.current,flipped);if(to)setDraft({from:start.current,to})}
  function up(e){if(e.button!==2||!start.current)return;e.preventDefault();const from=start.current,to=squareAt(e,ref.current,flipped)||from;start.current=null;setDraft(null);if(from===to)setMarks(old=>old.includes(from)?old.filter(s=>s!==from):[...old,from]);else setArrows(old=>old.some(a=>a.from===from&&a.to===to)?old.filter(a=>a.from!==from||a.to!==to):[...old,{from,to}]);try{ref.current.releasePointerCapture(e.pointerId)}catch{}}
