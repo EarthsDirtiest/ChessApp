@@ -62,3 +62,7 @@ Drag pieces onto destination squares in Chess Lab. In legal-play mode only legal
 Stockfish 19 Lite (single-threaded WebAssembly) runs locally **only in Chess Lab**. The analysis panel shows a live evaluation from White's perspective, search depth and a best-line continuation in SAN. It reanalyzes after moves, undo/redo, reset, FEN/PGN imports, or edits. Enable/disable it or adjust search depth (8–20). The engine is distributed as static JS/WASM assets copied from the npm package during the GitHub Pages build; no analysis API or backend is required. Stockfish is not loaded by the Lichess or friend-game components. Unrestricted editor positions may be invalid for chess-engine analysis.
 
 Stockfish.js is GPL-3.0 licensed; preserve the corresponding license notices and source obligations when redistributing the engine.
+
+## Opening recognition (Chess Lab)
+
+The Chess Lab opening panel identifies a curated set of ECO openings and named variations from the legal move history, matching the longest known move prefix. It updates on move, undo, redo, and PGN replay. Custom FEN positions and unrestricted board edits have no reliable opening history, so opening recognition is disabled there. The current database is curated rather than exhaustive and does not yet recognize transpositions (different move orders leading to the same position). This feature is separate from Stockfish; Stockfish evaluates the position, while the opening database supplies names.
