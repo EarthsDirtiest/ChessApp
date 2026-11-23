@@ -1,4 +1,27 @@
-// Curated ECO opening lines; match the longest recognized prefix of the played game.
-const raw="A00|Uncommon Opening|g2g3\nA00|Grob Opening|g2g4\nA00|Anderssen Opening|a2a3\nA00|Sodium Attack|b1a3\nA00|Van Geet Opening|b1c3\nA00|Bird Opening|f2f4\nA02|Bird Opening: From Gambit|f2f4 e7e5\nA04|Réti Opening|g1f3\nA06|Réti Opening: King's Indian Attack|g1f3 d7d5 g2g3\nA10|English Opening|c2c4\nA15|English Opening: Anglo-Indian Defense|c2c4 g8f6\nA20|English Opening: King's English Variation|c2c4 e7e5\nA40|Queen's Pawn Game|d2d4\nA40|Englund Gambit|d2d4 e7e5\nA45|Indian Game|d2d4 g8f6\nA46|Torre Attack|d2d4 g8f6 g1f3 e7e6 c1g5\nA50|Indian Game: Normal Variation|d2d4 g8f6 c2c4\nA57|Benko Gambit|d2d4 g8f6 c2c4 c7c5 d4d5 b7b5\nA60|Benoni Defense|d2d4 g8f6 c2c4 c7c5 d4d5 e7e6\nA80|Dutch Defense|d2d4 f7f5\nB00|King's Pawn Opening|e2e4\nB00|Nimzowitsch Defense|e2e4 b8c6\nB00|Owen Defense|e2e4 b7b6\nB01|Scandinavian Defense|e2e4 d7d5\nB02|Alekhine Defense|e2e4 g8f6\nB06|Modern Defense|e2e4 g7g6\nB07|Pirc Defense|e2e4 d7d6 d2d4 g8f6 b1c3 g7g6\nB10|Caro-Kann Defense|e2e4 c7c6\nB12|Caro-Kann Defense: Advance Variation|e2e4 c7c6 d2d4 d7d5 e4e5\nB13|Caro-Kann Defense: Exchange Variation|e2e4 c7c6 d2d4 d7d5 e4d5\nB15|Caro-Kann Defense: Two Knights Attack|e2e4 c7c6 b1c3 d7d5 g1f3\nB20|Sicilian Defense|e2e4 c7c5\nB21|Sicilian Defense: Smith-Morra Gambit|e2e4 c7c5 d2d4 c5d4 c2c3\nB22|Sicilian Defense: Alapin Variation|e2e4 c7c5 c2c3\nB23|Sicilian Defense: Closed|e2e4 c7c5 b1c3\nB27|Sicilian Defense: Hyperaccelerated Dragon|e2e4 c7c5 g1f3 g7g6\nB30|Sicilian Defense: Rossolimo Attack|e2e4 c7c5 g1f3 b8c6 f1b5\nB33|Sicilian Defense: Sveshnikov Variation|e2e4 c7c5 g1f3 b8c6 d2d4 c5d4 g1d4 g8f6 b1c3 e7e5\nB40|Sicilian Defense: French Variation|e2e4 c7c5 g1f3 e7e6\nB50|Sicilian Defense: Modern Variations|e2e4 c7c5 g1f3 d7d6\nB70|Sicilian Defense: Dragon Variation|e2e4 c7c5 g1f3 d7d6 d2d4 c5d4 g1d4 g8f6 b1c3 g7g6\nB90|Sicilian Defense: Najdorf Variation|e2e4 c7c5 g1f3 d7d6 d2d4 c5d4 g1d4 g8f6 b1c3 a7a6\nC00|French Defense|e2e4 e7e6\nC02|French Defense: Advance Variation|e2e4 e7e6 d2d4 d7d5 e4e5\nC01|French Defense: Exchange Variation|e2e4 e7e6 d2d4 d7d5 e4d5\nC10|French Defense: Rubinstein Variation|e2e4 e7e6 d2d4 d7d5 b1c3 d5e4\nC20|King's Pawn Game|e2e4 e7e5\nC20|King's Gambit|e2e4 e7e5 f2f4\nC21|Center Game|e2e4 e7e5 d2d4\nC22|Center Game: Danish Gambit|e2e4 e7e5 d2d4 e5d4 c2c3\nC23|Bishop's Opening|e2e4 e7e5 f1c4\nC25|Vienna Game|e2e4 e7e5 b1c3\nC30|King's Gambit Declined|e2e4 e7e5 f2f4 d7d5\nC40|King's Knight Opening|e2e4 e7e5 g1f3\nC41|Philidor Defense|e2e4 e7e5 g1f3 d7d6\nC42|Petrov Defense|e2e4 e7e5 g1f3 g8f6\nC44|Scotch Game|e2e4 e7e5 g1f3 b8c6 d2d4\nC45|Scotch Game: Classical Variation|e2e4 e7e5 g1f3 b8c6 d2d4 e5d4 f3d4\nC46|Three Knights Game|e2e4 e7e5 g1f3 b8c6 b1c3\nC47|Four Knights Game|e2e4 e7e5 g1f3 b8c6 b1c3 g8f6\nC50|Italian Game|e2e4 e7e5 g1f3 b8c6 f1c4\nC51|Evans Gambit|e2e4 e7e5 g1f3 b8c6 f1c4 f8c5 b2b4\nC53|Italian Game: Giuoco Piano|e2e4 e7e5 g1f3 b8c6 f1c4 f8c5\nC54|Italian Game: Giuoco Pianissimo|e2e4 e7e5 g1f3 b8c6 f1c4 f8c5 d2d3\nC55|Italian Game: Two Knights Defense|e2e4 e7e5 g1f3 b8c6 f1c4 g8f6\nC57|Italian Game: Fried Liver Attack|e2e4 e7e5 g1f3 b8c6 f1c4 g8f6 f3g5 d7d5 e4d5 f6d5 g5f7\nC60|Ruy Lopez|e2e4 e7e5 g1f3 b8c6 f1b5\nC65|Ruy Lopez: Berlin Defense|e2e4 e7e5 g1f3 b8c6 f1b5 g8f6\nC68|Ruy Lopez: Exchange Variation|e2e4 e7e5 g1f3 b8c6 f1b5 a7a6 b5c6\nC70|Ruy Lopez: Morphy Defense|e2e4 e7e5 g1f3 b8c6 f1b5 a7a6\nC78|Ruy Lopez: Archangel Defense|e2e4 e7e5 g1f3 b8c6 f1b5 a7a6 b5a4 b7b5 a4b3 c8b7\nD00|Queen's Pawn Game|d2d4 d7d5\nD00|Blackmar-Diemer Gambit|d2d4 d7d5 e2e4\nD01|Richter-Veresov Attack|d2d4 d7d5 b1c3\nD02|London System|d2d4 d7d5 g1f3 g8f6 c1f4\nD06|Queen's Gambit|d2d4 d7d5 c2c4\nD10|Slav Defense|d2d4 d7d5 c2c4 c7c6\nD20|Queen's Gambit Accepted|d2d4 d7d5 c2c4 d5c4\nD30|Queen's Gambit Declined|d2d4 d7d5 c2c4 e7e6\nD31|Queen's Gambit Declined: Semi-Slav|d2d4 d7d5 c2c4 e7e6 b1c3 c7c6\nD35|Queen's Gambit Declined: Exchange Variation|d2d4 d7d5 c2c4 e7e6 c4d5\nD37|Queen's Gambit Declined: Barmen Variation|d2d4 d7d5 c2c4 e7e6 b1c3 g8f6 g1f3\nD43|Semi-Slav Defense|d2d4 d7d5 c2c4 c7c6 b1c3 g8f6 g1f3 e7e6\nD70|Grünfeld Defense|d2d4 g8f6 c2c4 g7g6 b1c3 d7d5\nE00|Catalan Opening|d2d4 g8f6 c2c4 e7e6 g2g3\nE10|Queen's Pawn Game: Blumenfeld Countergambit|d2d4 g8f6 c2c4 e7e6 g1f3 c7c5 d4d5 b7b5\nE20|Nimzo-Indian Defense|d2d4 g8f6 c2c4 e7e6 b1c3 f8b4\nE60|King's Indian Defense|d2d4 g8f6 c2c4 g7g6 b1c3 f8g7\nE70|King's Indian Defense: Normal Variation|d2d4 g8f6 c2c4 g7g6 b1c3 f8g7 e2e4 d7d6\nE90|King's Indian Defense: Classical Variation|d2d4 g8f6 c2c4 g7g6 b1c3 f8g7 e2e4 d7d6 g1f3 e8g8\n";
-const openings=raw.trim().split('\n').map(row=>{const [eco,name,moves]=row.split('|');return {eco,name,moves:moves.split(' ')}}).sort((a,b)=>b.moves.length-a.moves.length);
-export function recognizeOpening(history){if(!history.length)return null;const played=history.map(u=>u.slice(0,4)+u.slice(4));return openings.find(o=>o.moves.length<=played.length&&o.moves.every((m,i)=>played[i]===m))||null}
+import {useEffect,useMemo,useState} from 'react';
+import {Chess} from 'chess.js';
+const START=new Chess().fen();
+let cache=null;
+let pending=null;
+function positionKey(fen){return fen.split(' ').slice(0,4).join(' ')}
+export function useOpeningDatabase(){
+ const [db,setDb]=useState(cache),[error,setError]=useState('');
+ useEffect(()=>{let active=true;if(cache){setDb(cache);return}
+ if(!pending)pending=fetch(import.meta.env.BASE_URL+'openings.json').then(r=>{if(!r.ok)throw Error('Opening database unavailable');return r.json()}).then(data=>{cache=data;return data}).catch(e=>{pending=null;throw e});
+ pending.then(data=>{if(active)setDb(data)}).catch(e=>{if(active)setError(e.message)});
+ return ()=>{active=false}
+ },[]);
+ return {db,error,count:db?Object.keys(db).length:0};
+}
+export function recognizeOpening(history,db,startFen=START){
+ if(!db||!history.length||startFen!==START)return null;
+ const game=new Chess(startFen);
+ let latest=null;
+ for(let i=0;i<history.length;i++){
+  const u=history[i];
+  try{game.move({from:u.slice(0,2),to:u.slice(2,4),promotion:u[4]||'q'})}catch{break}
+  const record=db[positionKey(game.fen())];
+  if(record)latest={...record,matchedAt:i+1,transposition:i+1!==record.ply};
+ }
+ return latest;
+}
