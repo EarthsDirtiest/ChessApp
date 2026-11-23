@@ -8,13 +8,15 @@ for(const file of files){
  if(!response.ok)throw Error('Failed to download '+file+': HTTP '+response.status);
  const lines=(await response.text()).trim().split(/\r?\n/);
  const header=lines.shift().split('\t');
- const ecoIdx=header.indexOf('eco'),nameIdx=header.indexOf('name'),uciIdx=header.indexOf('uci'),epdIdx=header.indexOf('epd');
- if([ecoIdx,nameIdx,uciIdx,epdIdx].some(i=>i<0))throw Error('Unexpected TSV columns in '+file+': '+header);
+ const ecoIdx=header.indexOf('eco'),nameIdx=header.indexOf('name'),pgnIdx=header.indexOf('pgn');
+ if([ecoIdx,nameIdx,pgnIdx].some(i=>i<0))throw Error('Unexpected TSV columns in '+file+': '+header);
  for(const line of lines){
-  const parts=line.split('\t'),uci=parts[uciIdx],epd=parts[epdIdx];
-  if(!uci||!epd)continue;
-  const moves=uci.trim().split(/\s+/);
-  const key=epd.trim().split(/\s+/).slice(0,4).join(' ');
+  const parts=line.split('\t'),pgn=parts[pgnIdx];
+  if(!pgn)continue;
+  const game=new Chess();
+  try{game.loadPgn(pgn)}catch(e){throw Error('Invalid opening PGN in '+file+': '+pgn+' — '+e.message)}
+  const moves=game.history();
+  const key=game.fen().split(/\s+/).slice(0,4).join(' ');
   const item={eco:parts[ecoIdx],name:parts[nameIdx],ply:moves.length};
   const existing=records.get(key);
   if(!existing||item.ply>existing.ply)records.set(key,item);
